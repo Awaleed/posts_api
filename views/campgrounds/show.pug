@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    div(class='container')
+        div(class='row')
+            div(class='col-md-3')
+                p(class='lead') YelpCamp
+                div(class='list-group')
+                    li(class='list-group-item active') Info
+                    li(class='list-group-item') Info
+                    li(class='list-group-item') Info
+            div(class='col-md-9')
+                div(class='thumbnail')
+                    img(class='img-responsive' src= campground.image alt='image')
+                    div(class='caption-full')
+                        h4(class='pull-right')= '$' + campground.price + '/night'
+                        h4:a= campground.name
+                        p= campground.description
+                        p: em Submitted By #{campground.author.username}
+                        if (currentUser && campground.author.id.equals(currentUser._id))
+                            a(class='btn btn-warning' href='/campgrounds/' + campground._id + '/edit') Edit
+                            form(class='delete-form' action='/campgrounds/' + campground._id + '?_method=delete' method='post'): button(class='btn btn-danger') Delete
+                div(class='well')
+                    div(class='text-right'): p: a(href='/campgrounds/' + campground._id + '/comments/new' class='btn btn-success') Add New Comment
+                    hr
+                    each comment in campground.comments
+                        div(class='row')
+                            div(class='col-md-12')
+                                strong= comment.author.username
+                                span(class='pull-right') 10 days ago
+                                p= comment.text
+                                if (currentUser && comment.author.id.equals(currentUser._id))
+                                    a(href='/campgrounds/' + campground._id + '/comments/' + comment._id + '/edit' class='btn btn-xs btn-warning') Edit
+                                    form(class='delete-form' action='/campgrounds/' + campground._id + '/comments/' + comment._id + '?_method=delete' method='POST'): button(class='btn btn-xs btn-danger') Delete
