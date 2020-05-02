@@ -17,7 +17,7 @@ var indexRouter       = require('./routes/index'),
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/yelp_camp', {useNewUrlParser: true});
+mongoose.connect('mongodb://demo:demo1234@ds159020.mlab.com:59020/yelp_camp', {useNewUrlParser: true});
 
 
 // view engine setup
