@@ -2,10 +2,14 @@ import * as mongoose from "mongoose";
 import Post from "./post.interface";
 
 const postSchema = new mongoose.Schema({
-  author: String,
+  title: String,
+  description: String,
   price: Number,
   image: String,
-  title: String,
+  author: {
+    ref: "User",
+    type: mongoose.Schema.Types.ObjectId,
+  },
 });
 
 const postModel = mongoose.model<Post & mongoose.Document>("Post", postSchema);

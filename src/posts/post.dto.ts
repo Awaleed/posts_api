@@ -1,14 +1,14 @@
-import { IsString, isNumber, IsDecimal, IsNumber, IsUrl } from "class-validator";
+import { IsString, IsNumber, IsUrl } from "class-validator";
 
 class CreatePostDto {
   @IsString()
-  public author: string;
+  public title: string;
+  @IsString()
+  description: string;
   @IsNumber()
   public price: number;
   @IsUrl()
   public image: string;
-  @IsString()
-  public title: string;
 }
 
 export default CreatePostDto;
