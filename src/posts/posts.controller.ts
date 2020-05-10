@@ -5,6 +5,8 @@ import postModel from "./posts.model";
 import PostNotFoundException from "../exceptions/PostNotFoundException";
 import validationMiddleware from "../middleware/validation.middleware";
 import CreatePostDto from "./post.dto";
+import authMiddleware from "../middleware/auth.middleware";
+import RequestWithUser from "../interfaces/requestWithUser.interface";
 
 class PostsController implements Controller {
   public path = "/posts";
@@ -18,17 +20,15 @@ class PostsController implements Controller {
   private initializeRoutes() {
     this.router.get(this.path, this.getAllPosts);
     this.router.get(`${this.path}/:id`, this.getPostById);
-    this.router.delete(`${this.path}/:id`, this.deletePost);
-    this.router.patch(
-      `${this.path}/:id`,
-      validationMiddleware(CreatePostDto, true),
-      this.modifyPost
-    );
-    this.router.post(
-      this.path,
-      validationMiddleware(CreatePostDto),
-      this.createPost
-    );
+    this.router
+      .all(`${this.path}/*`, authMiddleware)
+      .patch(
+        `${this.path}/:id`,
+        validationMiddleware(CreatePostDto, true),
+        this.modifyPost
+      )
+      .delete(`${this.path}/:id`, this.deletePost)
+      .post(this.path, validationMiddleware(CreatePostDto), this.createPost);
   }
 
   private getAllPosts = (
@@ -74,17 +74,20 @@ class PostsController implements Controller {
   };
 
   private createPost = (
-    request: express.Request,
+    request: RequestWithUser,
     response: express.Response,
     next: express.NextFunction
   ) => {
     const postData: Post = request.body;
-    this.post.create(postData, (err: any, post: Post) => {
-      if (err) {
-        return next(new Error(err));
+    this.post.create(
+      { ...postData, author: request.user._id },
+      (err: any, post: Post) => {
+        if (err) {
+          return next(new Error(err));
+        }
+        response.send(post);
       }
-      response.send(post);
-    });
+    );
   };
 
   private deletePost = (
