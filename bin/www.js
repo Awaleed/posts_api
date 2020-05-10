@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('my-school-demo:server');
+var debug = require('debug')('yelp-camp-demo:server');
 var http = require('http');
 
 /**

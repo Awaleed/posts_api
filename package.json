@@ -1,9 +1,9 @@
 {
-  "name": "my-school-demo",
+  "name": "yelp-camp-demo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www",
+    "start": "node ./out/bin/www",
     "tsc": "tsc"
   },
   "dependencies": {
