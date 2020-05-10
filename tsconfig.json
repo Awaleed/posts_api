@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
     "module": "commonjs",
-    "outDir": "out",
+    "outDir": "./dist",
+    "baseUrl": "./src",
     "sourceMap": true
-  }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
