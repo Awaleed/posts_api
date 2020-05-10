@@ -17,12 +17,16 @@ class App {
 
   private connectToTheDatabase() {
     const { MONGO_PATH } = process.env;
-    mongoose.connect(`${MONGO_PATH}`, (err) => {
-      if (err) {
-        return console.error("db: error", err);
+    mongoose.connect(
+      `${MONGO_PATH}`,
+      { useUnifiedTopology: true, useNewUrlParser: true },
+      (err) => {
+        if (err) {
+          return console.error("db: error", err);
+        }
+        console.log("db: ready");
       }
-      console.log("db: ready");
-    });
+    );
   }
 
   private initializeMiddlewares() {
@@ -34,7 +38,7 @@ class App {
       this.app.use("/", controller.router);
     });
   }
-  
+
   private initializeErrorHandling() {
     this.app.use(errorMiddleware);
   }
