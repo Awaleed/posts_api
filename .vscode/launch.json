@@ -15,7 +15,19 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}\\out\\bin\\www",
       "outFiles": ["${workspaceFolder}/**/*.js"],
-      "env": { "DEBUG": "yelp-camp-demo:*" }
+      "env": { "DEBUG": "yelp-camp-demo:*", "NODE_ENV": "development" }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "run node",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\out\\bin\\www",
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "env": { "NODE_ENV": "production " }
     }
   ]
 }
