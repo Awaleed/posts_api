@@ -3,7 +3,7 @@ import Controller from "../interfaces/controller.interface";
 import Post from "./post.interface";
 import postModel from "./posts.model";
 import PostNotFoundException from "../exceptions/PostNotFoundException";
-import validationMiddleware from "middleware/validation.middleware";
+import validationMiddleware from "../middleware/validation.middleware";
 import CreatePostDto from "./post.dto";
 
 class PostsController implements Controller {
