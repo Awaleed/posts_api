@@ -5,9 +5,18 @@ import { validateEnv } from "./utils/validateEnv";
 validateEnv();
 
 import App from "./app";
-import PostsController from "./posts/posts.controller";
-import AuthenticationController from "./authentication/authentication.controller";
+import UserController from "./users/user.controller";
 
-const app = new App([new PostsController(), new AuthenticationController()]);
+import PostsController from "./posts/posts.controller";
+
+import AuthenticationController from "./authentication/authentication.controller";
+import ReportController from "./report/report.controller";
+
+const app = new App([
+  new UserController(),
+  new PostsController(),
+  new AuthenticationController(),
+  new ReportController(),
+]);
 
 app.listen();
