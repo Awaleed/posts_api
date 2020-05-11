@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/Awaleed/yelp_camp_demo#readme",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/mongoose": "^5.7.16",
+    "@types/node": "^13.13.5",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
@@ -31,11 +37,5 @@
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/cookie-parser": "^1.4.2",
-    "@types/express": "^4.17.6",
-    "@types/jsonwebtoken": "^8.3.9",
-    "@types/mongoose": "^5.7.16"
-  }
+  "devDependencies": {}
 }
